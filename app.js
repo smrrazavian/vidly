@@ -1,11 +1,16 @@
 // --------------------- Imports ---------------------
+import helmet from "helmet";
 const Joi = require("joi");
+const morgan = require("morgan");
 const express = require("express");
 require("dotenv").config();
 
 // --------------------- Initializing ---------------------
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // TODO: Check if this is needed and what it does?
+app.use(helmet());
+app.use(morgan("tiny"));
 
 const genres = [
   { id: 1, genre: "action" },
