@@ -1,6 +1,7 @@
 // --------------------- Imports ---------------------
 const helmet = require("helmet");
-const genres = require("./routers/genres")
+const genres = require("./routers/genres");
+const home = require("./routers/home");
 const morgan = require("morgan");
 const express = require("express");
 require("dotenv").config();
@@ -12,12 +13,7 @@ app.use(express.urlencoded({ extended: true })); // TODO: Check if this is neede
 app.use(helmet());
 app.use(morgan("tiny"));
 app.use("/api/genres", genres);
-
-
-// --------------------- GET ---------------------
-app.get("/", (req, res) => {
-  res.send("Welcome to Vidly!");
-});
+app.use("/", home);
 
 // --------------------- SETTING PORT ---------------------
 const PORT = process.env.PORT || 3000;
